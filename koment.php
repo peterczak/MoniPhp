@@ -1,43 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
 <?php
-   $tc = $_POST['tc'];// to comment
-   $user = $_POST['comment_nick'];
-   $com = $_POST['comment_text'];//comment
-   $tcom = $_POST['comment_type'];
-   $pass = $_POST['pass'];
+   $commentName = $_POST['commentName'];// to comment
+   $commentNick = $_POST['commentNick'];
+   $commentText = $_POST['commentText'];//comment
+   $commentType = $_POST['commentType'];
+   $password = $_POST['pass'];
    include 'menu.php';
 
-   // Komentarze umieszczane są w katalogu o nazwie: RRRRMMDDGGmmSSUU.k (w razie potrzeby skrypt musi tworzyć katalog automatycznie)
-	$pasv = False;
-	$usrf = False;//user found?
-         foreach (new DirectoryIterator("./Blogi2/") as $ib) {//ib iterator po blogach
-		//czy dirb jest folderem (isDir strzalka tutaj bo dirb jest iteratorem) albo czy jest kropka (unix)
-             if ($ib->isDir() && !$ib->isDot()) {
-		 foreach (new DirectoryIterator($ib->getPathName()) as $info) {
-		     if ($info->getFileName()=="info") {
-				$opis = fopen($info->getPathname(), 'r');
-				if ($user == rtrim(fgets($opis),"\r\n")) {
-					$usrf=True;
-					if (md5($pass) == rtrim(fgets($opis),"\r\n")) {
-						$pasv = True;
-						break;
-					}
-				}
-		     }
-		 }
-             }
-         }
-
-
-
-	if (!$usrf) {
-		echo "Nie znaleziono uzytkownika! <br/>";
-	}
-	if (!$pasv&&$usrf) {
-		echo "Niepoprawne hasło! <br/>";
-	}
-else{
 //ustawienie lokalizacji pliku z wpisem do skomentowania
-   $dirb = "./Blogi2/".$tc;//sciezka do pliku z komentarzem
+   $dirb = "./Blogi2/".$commentName;//sciezka do pliku z komentarzem
    // tworzenie folderu z komentarzami
 if(file_exists($dirb)){
    if (!file_exists($dirb . ".k")) {
@@ -56,11 +35,11 @@ if(file_exists($dirb)){
    $pc = $dirc . "/" . $idc;//path to comment
    $cf = fopen($pc, "w"); //comment file
    if (flock($cf, LOCK_EX)){
-   fputs($cf, $tcom . "\n");
+   fputs($cf, $commentType . "\n");
    $ts = date("Y-m-d H:i:s");//timestamp
    fputs($cf, $ts . "\n");
-   fputs($cf, $user . "\n");
-   fputs($cf, $com);
+   fputs($cf, $commentNick . "\n");
+   fputs($cf, $commentText);
    echo "Komentarz dodany <br />";
    flock($cf, LOCK_UN);
    }
@@ -69,5 +48,7 @@ if(file_exists($dirb)){
 else{
    echo "Nie udało się dodać komentarza plik nie istnieje <br />";
 }
-}
+
 ?>
+</body>
+</html>

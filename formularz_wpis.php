@@ -1,14 +1,17 @@
 <?php include 'menu.php'; ?>
-<html>
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <div>
     <form action="wpis.php" method="post" enctype="multipart/form-data">
-        <input type="text" placeholder="Nazwa użytkownika" name="user_name" /> <br/>
+        <input type="text" placeholder="Nazwa użytkownika" name="userName" /> <br/>
         <input type="password" placeholder="Hasło" name="password" /> <br/>
-        <textarea name="post_text" rows="5" cols="28">Miejsce na Twój wpis.</textarea> <br/>
+        <textarea name="postText" rows="5" cols="28">Miejsce na Twój wpis.</textarea> <br/>
         Data <br/>
         <input type="text" name="date" value="<?php echo date("Y.m.d"); ?>" /> <br/>
         Godzina <br/>
