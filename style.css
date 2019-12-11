@@ -1,0 +1,52 @@
+body
+{
+    background: whitesmoke;
+}
+input[type=text], textarea, input[type=password]{
+    background: black;
+    color: white;
+    border: 2px solid #00aced;
+    padding: 5px;
+    margin: 5px;
+}
+input[type=button], input[type=submit], input[type=reset]
+{
+    background: #00aced;
+    cursor: pointer;
+    border: 1px solid #72bfac;
+    padding: 5px;
+    margin: 5px;
+    color: white;
+}
+
+input[type=text]:focus {
+    background-color: #00aced;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+    border-right:1px solid #bbb;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #00aced;
+  }
+  
+  .active {
+    background-color: #00aced;
+  }
